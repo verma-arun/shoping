@@ -140,7 +140,7 @@ exports.authenticate = async (req, res) => {
       },
       "privatekey",
       {
-        expiresIn: "7d",
+        expiresIn: "1d",
       }
     );
     res.status(200).send({

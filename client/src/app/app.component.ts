@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { ApiService } from './api.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,14 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'blog';
-  public isAuthenticated: boolean;
+  title = 'client';
 
-  constructor() {
-    this.isAuthenticated = false;
-  }
-
-  login() {}
-
-  logout() {}
+  constructor(private _apiservice: ApiService) {}
 }

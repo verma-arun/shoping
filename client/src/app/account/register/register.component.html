@@ -1,29 +1,76 @@
-﻿<mat-toolbar>
-  <span>Registration</span>
-</mat-toolbar>
-<mat-card class="my-card">
-  <mat-card-content>
-    <form class="my-form">
-      <mat-form-field class="full-width">
-        <mat-label>First Name</mat-label>
-        <input matInput placeholder="First name" name="fname" required />
-      </mat-form-field>
-      <mat-form-field class="full-width">
-        <mat-label>Email</mat-label>
-        <input matInput placeholder="Email" name="email" />
-      </mat-form-field>
-      <mat-form-field class="full-width">
-        <mat-label>Password</mat-label>
-        <input matInput placeholder="Password" name="password" />
-      </mat-form-field>
-      <mat-card-actions>
-        <button mat-raised-button (click)="register()" color="primary">
-          REGISTER
-        </button>
-      </mat-card-actions>
-    </form>
-  </mat-card-content>
-  <mat-card-actions>
-    <!-- REGISTER BUTTON -->
-  </mat-card-actions>
-</mat-card>
+﻿<br />
+<div class="col s8 offset-s2">
+<div class="card">
+  <form class="col s12" #userRegistrationForm="ngForm" (ngSubmit)="register(userRegistrationForm)">
+    <fieldset>
+      <br>
+      <div class="col-6 form-group">
+        <!-- <label for="name">Name</label> -->
+        <input
+          name="name"
+          #name="ngModel"
+          [(ngModel)]="user.name"
+          type="text"
+          class="form-control"
+          id="name"
+          placeholder="Enter your name"
+          required
+        />
+        <!-- <label data-error="Required field!">Name</label> -->
+      </div>
+      <div class="col-6 form-group">
+        <!-- <label for="email1">Email</label> -->
+        <input
+          name="email"
+          #email="ngModel"
+          [(ngModel)]="user.email"
+          type="email"
+          class="form-control"
+          id="email"
+          aria-describedby="emailHelp"
+          placeholder="Enter email"
+          [pattern]="emailPattern"
+          required
+        />
+        <!-- <label data-error="Required field!">Email</label> -->
+      </div>
+      <div class="col-6 form-group">
+        <!-- <label for="exampleInputPassword1">Password</label> -->
+        <input
+          name="password"
+          #password="ngModel"
+          [(ngModel)]="user.password"
+          type="password"
+          class="form-control"
+          id="password"
+          placeholder="Password"
+          required
+          minlength="3"
+          maxlength="8"
+        />
+        <!-- <label [attr.data-error]="Password.errors!=null?(Password.errors.required?'Required field!':'Minimum 3 characters needed'):''">Password</label> -->
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary ml-2"
+        [disabled]="!userRegistrationForm.valid"
+      >
+        Register
+      </button>
+      <br>
+      <br>
+    </fieldset>
+  </form>
+  
+<!-- Success message -->
+<div class="success" *ngIf="showSucessMessage">
+  Saved successfully
+</div>
+
+<!-- Error message -->
+<div class="alert" *ngIf="serverErrorMessages">
+  {{serverErrorMessages}}
+</div>
+</div>
+
+</div>
